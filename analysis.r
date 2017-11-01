@@ -35,7 +35,11 @@ library(SnowballC)
 
 
 # Set working directory to project root
-setwd("C:/Git/TBM2017")
+
+#setwd("C:/Git/TBM2017")
+
+setwd("C:/Dev/Git/TBM2017")
+
 #getwd()
 
 
@@ -312,8 +316,8 @@ confdaytweets <- testbashtweets[index,]
 row.names(confdaytweets) <- 1:nrow(confdaytweets)
 
 #clean up a few rogue tweets from the night before conference day
-#previousevening <- c(1780, 1781, 1782, 1783, 1784, 1785)
-#confdaytweets <- confdaytweets[-previousevening,]
+previousevening <- 1676
+confdaytweets <- confdaytweets[-previousevening,]
 
 #correct row names for confdaytweets dataframe
 row.names(confdaytweets) <- 1:nrow(confdaytweets)
@@ -376,75 +380,16 @@ str(confdaytweets$keytimes)
 # plot tweets on 21-10-16, the day of the conference by time and sentiment
 plot <- ggplot(confdaytweets, aes(x = created, y = sentiment_score))+
   geom_jitter(alpha = 0.4)+ 
-  ggtitle("Tweets by Time and Positivity for #testbash Manchester")+
+  ggtitle("Tweets by Time and Positivity for #testbash Manchester on 27-10-17")+
   labs(x="Time", y="Positivity Index")+
   
   scale_x_datetime(date_breaks = "2 hour", date_labels = "%H:%M")+ #use scale_*_datetime for POSIXct variables
   scale_y_continuous(breaks = c(-4,-3,-2,-1,0,1,2,3,4,5,6))
   
-  # Lean Coffee Rect
-  #annotate("rect", xmin=confdaytweets[1,19], xmax=confdaytweets[2,19],ymin=-5, ymax=7, alpha=0.3, fill="#4285F4")
-  # Lean Coffee Label
-  #annotate("label", x=confdaytweets[19,19], y=8, label= "Registration\n& Lean Coffee", color="black", fill ="#4285F4", alpha=0.3) 
-  
-  # James Bach Rect
-  #annotate("rect", xmin=confdaytweets[3,19], xmax=confdaytweets[4,19],ymin=-5, ymax=7, alpha=0.3, fill="#EA4335")+
-  # James Bach Label
-  #annotate("label", x=confdaytweets[20,19], y=-6, label= "James\nBach", color="black", fill ="#EA4335", alpha=0.3) + 
-  
-  # Iain Bright
-  #annotate("rect", xmin=confdaytweets[4,19], xmax=confdaytweets[5,19],ymin=-5, ymax=7, alpha=0.3, fill="#FBBC05")+
-  # Iain Bright Label
-  #annotate("label", x=confdaytweets[21,19], y=8, label= "Iain\nBright", color="black", fill ="#FBBC05", alpha=0.3) + 
-  
-  # Kim Knup
-  #annotate("rect", xmin=confdaytweets[6,19], xmax=confdaytweets[7,19],ymin=-5, ymax=7, alpha=0.3, fill="#4285F4")+
-  # Kim Knup Label
-  #annotate("label", x=confdaytweets[22,19], y=-6, label= "Kim\nKnup", color="black", fill ="#4285F4", alpha=0.3) + 
-  
-  # Stephen Mounsey
-  #annotate("rect", xmin=confdaytweets[7,19], xmax=confdaytweets[8,19],ymin=-5, ymax=7, alpha=0.3, fill="#EA4335")+
-  # Stephen Mounsey Label
-  #annotate("label", x=confdaytweets[23,19], y=8, label= "Stephen\nMounsey", color="black", fill ="#EA4335", alpha=0.3) + 
-  
-  # Duncan Nesbitt
-  #annotate("rect", xmin=confdaytweets[8,19], xmax=confdaytweets[9,19],ymin=-5, ymax=7, alpha=0.3, fill="#FBBC05")+
-  # Duncan Nesbitt Label
-  #annotate("label", x=confdaytweets[24,19], y=-6, label= "Duncan\nNesbitt", color="black", fill ="#FBBC05", alpha=0.3) + 
-  
-  # Helena and Joep
-  #annotate("rect", xmin=confdaytweets[10,19], xmax=confdaytweets[11,19],ymin=-5, ymax=7, alpha=0.3, fill="#4285F4")+
-  # Helena and Joep Label
-  #annotate("label", x=confdaytweets[25,19], y=8, label= "Helena &\nJoep", color="black", fill ="#4285F4", alpha=0.3) + 
-  
-  # Mark Winteringham
-  #annotate("rect", xmin=confdaytweets[11,19], xmax=confdaytweets[12,19],ymin=-5, ymax=7, alpha=0.3, fill="#EA4335")+
-  # Mark Winteringham Label
-  #annotate("label", x=confdaytweets[26,19], y=-6, label= "Mark\nWinteringham", color="black", fill ="#EA4335", alpha=0.3) + 
-  # Huib Schoots
-  #annotate("rect", xmin=confdaytweets[13,19], xmax=confdaytweets[14,19],ymin=-5, ymax=7, alpha=0.3, fill="#FBBC05")+
-  # Huib Schoots Label
-  #annotate("label", x=confdaytweets[27,19], y=8, label= "Huib\nSchoots", color="black", fill ="#FBBC05", alpha=0.3) + 
-  
-  # Gwen Diagram
-  #annotate("rect", xmin=confdaytweets[14,19], xmax=confdaytweets[15,19],ymin=-5, ymax=7, alpha=0.3, fill="#4285F4")+
-  # Gwen Diagram Label
-  #annotate("label", x=confdaytweets[28,19], y=-6, label= "Gwen\nDiagram", color="black", fill ="#4285F4", alpha=0.3) + 
-  
-  # Beren Van Daele
-  #annotate("rect", xmin=confdaytweets[16,19], xmax=confdaytweets[17,19],ymin=-5, ymax=7, alpha=0.3, fill="#EA4335")+
-  # Beren Van Daele Label
-  #annotate("label", x=confdaytweets[29,19], y=8, label= "Beren\nVan Daele", color="black", fill ="#EA4335", alpha=0.3) + 
-  
-  # 99 Second Talks
-  #annotate("rect", xmin=confdaytweets[17,19], xmax=confdaytweets[18,19],ymin=-5, ymax=7, alpha=0.3, fill="#FBBC05")+
-  # 99 second Talks Label
-  #annotate("label", x=confdaytweets[30,19], y=-6, label= "99 Second\nTalks", color="black", fill ="#FBBC05", alpha=0.3) 
-
 
 plot
 
-plot + geom_smooth(method ="loess", span=0.1, colour="yellow" )
+plot + geom_smooth(method ="loess", span=0.05, colour="cyan" )
 
 
 #most positive tweet  
@@ -455,7 +400,9 @@ positive_tweets <- confdaytweets[index,]
 Most_positive  <-   positive_tweets$text[4]
 
 # link to actual tweet 
-# https://twitter.com/gwendiagram/status/789451319031586816
+# https://twitter.com/FriendlyTester/status/923999256331079681
+
+
 
 #most negative tweets    
 index <- which(confdaytweets$sentiment_score == -5)
@@ -463,27 +410,28 @@ neg_tweets <- confdaytweets[index,]
 Most_negative <- c(neg_tweets$text[1])
 
 # link to actual tweet
-# https://twitter.com/ianbell2i/status/789408139711909889
+# https://twitter.com/TheTestDoctor/status/923854442969083905
 
 
 # Top 5 most Favourited tweets
 index <- which(confdaytweets$favoriteCount > 27)
 top5 <- confdaytweets[index,]
 
-# #1 - 50 favourites
-# https://twitter.com/FriendlyTester/status/789567426904088577
+# #1 - 49 favourites
+# https://twitter.com/TestPappy/status/923958088792756224
 
-# #2 - 37 favourites
-# https://twitter.com/FriendlyTester/status/789411505347239936
+# #2 - 47 favourites
+# https://twitter.com/FriendlyTester/status/923999256331079681
 
-# #3 - 34 favourites
-# https://twitter.com/e_tester/status/789485234911846400
+# #3 - 38 favourites
+# https://twitter.com/marianneduijst/status/923938022093217792
 
-# #4 - 31 favourites
-# https://twitter.com/FriendlyTester/status/789517320347615232
+# #4 - 30 favourites
+# https://twitter.com/Tweet_Cassandra/status/923812972841127936
 
-# #5 - 31 favourites
-# https://twitter.com/Tweet_Cassandra/status/789605366468313088
+# #5 - 27 favourites
+# https://twitter.com/RightSaidJames/status/923878721513287680
+
 
 
 # try extract platform data for conference day tweets
